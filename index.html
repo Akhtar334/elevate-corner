@@ -567,39 +567,158 @@
         }
         
         /* Schedule Table */
-        .schedule-day {
+        .day-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        
+        .day-tab {
             background: var(--ivory-white);
             border: 3px solid var(--ink-black);
-            padding: 1rem;
-            margin-bottom: 1rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
-        .schedule-day:hover {
+        @media (min-width: 768px) {
+            .day-tab {
+                font-size: 1rem;
+            }
+        }
+        
+        .day-tab:hover {
             background: var(--yellow-sticky);
-            transform: translateX(5px);
+            transform: translateY(-2px);
         }
         
-        .schedule-day.active {
+        .day-tab.active {
             background: var(--sage-green);
             color: white;
+            box-shadow: 4px 4px 0 rgba(30, 30, 30, 0.25);
         }
         
-        .schedule-day.active .day-name {
-            color: white;
+        .schedule-content {
+            display: none;
         }
         
-        .day-name {
+        .schedule-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .schedule-day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--ink-black);
             color: var(--red-gingham);
         }
         
-        .schedule-subjects {
+        @media (min-width: 768px) {
+            .schedule-day-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        .schedule-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .schedule-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            background: var(--ivory-white);
+            border: 2px solid var(--ink-black);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .schedule-row {
+                padding: 1.25rem;
+                gap: 1.5rem;
+            }
+        }
+        
+        .schedule-row:hover {
+            transform: translateX(4px);
+            box-shadow: 4px 4px 0 rgba(30, 30, 30, 0.15);
+        }
+        
+        .schedule-row.break-time {
+            background: var(--yellow-sticky);
+            border-color: #e5d9a8;
+            border-style: dashed;
+        }
+        
+        .schedule-row.break-time:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .schedule-time {
+            font-weight: 700;
             font-size: 0.875rem;
-            line-height: 1.6;
+            color: var(--red-gingham);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            min-width: 100px;
+        }
+        
+        @media (min-width: 768px) {
+            .schedule-time {
+                font-size: 1rem;
+                min-width: 130px;
+            }
+        }
+        
+        .schedule-subject {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .subject-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--ink-black);
+        }
+        
+        @media (min-width: 768px) {
+            .subject-name {
+                font-size: 1.125rem;
+            }
+        }
+        
+        .teacher-name {
+            font-size: 0.875rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        @media (min-width: 768px) {
+            .teacher-name {
+                font-size: 0.95rem;
+            }
+        }
+        
+        .break-time .subject-name {
+            font-weight: 600;
+            color: #8B7355;
         }
         
         /* Countdown Timer */
@@ -962,7 +1081,8 @@
             </div>
         </section>
         
-        <!-- Countdown Event -->
+        <!-- Countdown Event (Hidden for now - uncomment when needed) -->
+        <!-- 
         <section class="countdown-box fade-in-up delay-2">
             <div class="countdown-title">⏰ Countdown Ujian Tengah Semester</div>
             <div class="countdown-timer">
@@ -984,6 +1104,7 @@
                 </div>
             </div>
         </section>
+        -->
         
         <!-- Navigation Tabs -->
         <section class="fade-in-up delay-3">
@@ -999,40 +1120,310 @@
                 <div class="card">
                     <h2 class="card-title serif">📖 Jadwal Pelajaran Minggu Ini</h2>
                     
-                    <div class="schedule-day active">
-                        <div class="day-name">🌅 Senin</div>
-                        <div class="schedule-subjects">
-                            Matematika • Bahasa Indonesia • Fisika • Kimia • Bahasa Inggris
+                    <!-- Day Tabs -->
+                    <div class="day-tabs">
+                        <button class="day-tab active" onclick="showScheduleDay('senin')">Senin</button>
+                        <button class="day-tab" onclick="showScheduleDay('selasa')">Selasa</button>
+                        <button class="day-tab" onclick="showScheduleDay('rabu')">Rabu</button>
+                        <button class="day-tab" onclick="showScheduleDay('kamis')">Kamis</button>
+                        <button class="day-tab" onclick="showScheduleDay('jumat')">Jumat</button>
+                    </div>
+                    
+                    <!-- Schedule Content -->
+                    <div id="schedule-senin" class="schedule-content active">
+                        <h3 class="schedule-day-title">🌅 Senin</h3>
+                        <div class="schedule-table">
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:40 - 09:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Sejarah Indonesia</div>
+                                    <div class="teacher-name">Dina</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:00 - 09:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">PABP</div>
+                                    <div class="teacher-name">Bariyah</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">09:40 - 09:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">☕ Istirahat 1</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:55 - 10:35</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Fisika</div>
+                                    <div class="teacher-name">Fauzi</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">10:35 - 11:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Bahasa Indonesia</div>
+                                    <div class="teacher-name">Dhofir</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">11:55 - 12:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">🍱 Istirahat 2</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">12:40 - 14:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Biologi</div>
+                                    <div class="teacher-name">LilikBio</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:00 - 14:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">BK</div>
+                                    <div class="teacher-name">Khabibatul</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:40 - 16:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Pancasila</div>
+                                    <div class="teacher-name">Asti</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="schedule-day">
-                        <div class="day-name">🌤️ Selasa</div>
-                        <div class="schedule-subjects">
-                            Biologi • Sejarah • Geografi • Ekonomi • Seni Budaya
+                    <div id="schedule-selasa" class="schedule-content">
+                        <h3 class="schedule-day-title">🌤️ Selasa</h3>
+                        <div class="schedule-table">
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:00 - 08:20</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">PKWU</div>
+                                    <div class="teacher-name">Anita</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">08:20 - 09:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Sosiologi</div>
+                                    <div class="teacher-name">Putri</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">09:40 - 09:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">☕ Istirahat 1</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:55 - 11:15</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Ekonomi</div>
+                                    <div class="teacher-name">Ervina</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">11:15 - 11:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Geografi</div>
+                                    <div class="teacher-name">Cholila</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">11:55 - 12:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">🍱 Istirahat 2</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">12:40 - 14:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Bahasa Inggris</div>
+                                    <div class="teacher-name">Nisa</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:00 - 14:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">PJOK</div>
+                                    <div class="teacher-name">Fazar</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:40 - 16:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Kimia</div>
+                                    <div class="teacher-name">Novvy</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="schedule-day">
-                        <div class="day-name">☀️ Rabu</div>
-                        <div class="schedule-subjects">
-                            Matematika • PKN • Bahasa Inggris • Olahraga • Prakarya
+                    <div id="schedule-rabu" class="schedule-content">
+                        <h3 class="schedule-day-title">☀️ Rabu</h3>
+                        <div class="schedule-table">
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:00 - 08:20</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">PJOK</div>
+                                    <div class="teacher-name">Fazar</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">08:20 - 09:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Bahasa Indonesia</div>
+                                    <div class="teacher-name">Dhofir</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">09:40 - 09:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">☕ Istirahat 1</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:55 - 11:15</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Fisika</div>
+                                    <div class="teacher-name">Fauzi</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">11:15 - 11:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Biologi</div>
+                                    <div class="teacher-name">LilikBio</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">11:55 - 12:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">🍱 Istirahat 2</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">12:40 - 14:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Kimia</div>
+                                    <div class="teacher-name">Novvy</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:00 - 16:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Matematika</div>
+                                    <div class="teacher-name">Rachma</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="schedule-day">
-                        <div class="day-name">🌥️ Kamis</div>
-                        <div class="schedule-subjects">
-                            Fisika • Kimia • Biologi • Bahasa Indonesia • Informatika
+                    <div id="schedule-kamis" class="schedule-content">
+                        <h3 class="schedule-day-title">🌥️ Kamis</h3>
+                        <div class="schedule-table">
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:00 - 07:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Ekonomi</div>
+                                    <div class="teacher-name">Ervina</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:40 - 08:20</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">PABP</div>
+                                    <div class="teacher-name">Bariyah</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">08:20 - 09:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Keterampilan Kearsipan</div>
+                                    <div class="teacher-name">Endang</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">09:40 - 09:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">☕ Istirahat 1</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:55 - 11:15</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Informatika</div>
+                                    <div class="teacher-name">Endang</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">11:15 - 11:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Bahasa Inggris</div>
+                                    <div class="teacher-name">Nisa</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">11:55 - 12:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">🍱 Istirahat 2</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">12:40 - 14:00</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Bahasa Jawa</div>
+                                    <div class="teacher-name">Nafi'</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">14:00 - 15:20</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Sosiologi</div>
+                                    <div class="teacher-name">Putri</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="schedule-day">
-                        <div class="day-name">🌆 Jumat</div>
-                        <div class="schedule-subjects">
-                            PAI • Bahasa Jawa • Matematika • Sejarah • BK
+                    <div id="schedule-jumat" class="schedule-content">
+                        <h3 class="schedule-day-title">🌆 Jumat</h3>
+                        <div class="schedule-table">
+                            <div class="schedule-row">
+                                <div class="schedule-time">07:00 - 08:20</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Sejarah Indonesia</div>
+                                    <div class="teacher-name">Dina</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">08:20 - 09:40</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Geografi</div>
+                                    <div class="teacher-name">Cholila</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row break-time">
+                                <div class="schedule-time">09:40 - 09:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">☕ Istirahat 1</div>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-time">09:55 - 11:55</div>
+                                <div class="schedule-subject">
+                                    <div class="subject-name">Matematika</div>
+                                    <div class="teacher-name">Rachma</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             
@@ -1264,6 +1655,45 @@
             event.target.classList.add('active');
         }
         
+        // Schedule Day Switcher
+        function showScheduleDay(day) {
+            // Hide all schedule contents
+            const allSchedules = document.querySelectorAll('.schedule-content');
+            allSchedules.forEach(schedule => schedule.classList.remove('active'));
+            
+            // Remove active class from all day tabs
+            const allDayTabs = document.querySelectorAll('.day-tab');
+            allDayTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected day schedule
+            document.getElementById('schedule-' + day).classList.add('active');
+            
+            // Add active class to clicked day tab
+            event.target.classList.add('active');
+        }
+        
+        // Auto-select today's schedule
+        function autoSelectToday() {
+            const days = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+            const today = days[new Date().getDay()];
+            
+            // Only auto-select if it's a school day (Monday-Friday)
+            if (today !== 'minggu' && today !== 'sabtu') {
+                const todaySchedule = document.getElementById('schedule-' + today);
+                const todayTab = document.querySelector(`.day-tab[onclick*="${today}"]`);
+                
+                if (todaySchedule && todayTab) {
+                    // Remove active from default
+                    document.querySelectorAll('.schedule-content').forEach(s => s.classList.remove('active'));
+                    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+                    
+                    // Set today as active
+                    todaySchedule.classList.add('active');
+                    todayTab.classList.add('active');
+                }
+            }
+        }
+        
         // Countdown Timer
         function updateCountdown() {
             // Set target date (30 days from now for example - ganti sesuai tanggal UTS)
@@ -1278,33 +1708,22 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            if (daysEl) daysEl.textContent = days;
+            if (hoursEl) hoursEl.textContent = hours;
+            if (minutesEl) minutesEl.textContent = minutes;
+            if (secondsEl) secondsEl.textContent = seconds;
         }
         
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
-        // Schedule Day Click Handler
-        const scheduleDays = document.querySelectorAll('.schedule-day');
-        scheduleDays.forEach(day => {
-            day.addEventListener('click', function() {
-                scheduleDays.forEach(d => d.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // Get current day and highlight it
-        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-        const today = days[new Date().getDay()];
-        
-        scheduleDays.forEach(day => {
-            if (day.textContent.includes(today)) {
-                day.classList.add('active');
-            }
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            autoSelectToday();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         });
     </script>
 </body>

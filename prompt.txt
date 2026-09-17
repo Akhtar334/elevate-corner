@@ -1,54 +1,95 @@
-mereka minta gini:
-Buatkan kode website full visual (HTML, CSS internal, Tailwind CDN, dan Font) dalam satu file `index.html` untuk landing page/hub kelas X-11 SMAN 1 Gresik bernama ELEVATE CORNER. 
+Tolong ubah dan perbarui file index.html di project ini agar memiliki bagian Jadwal Pelajaran untuk kelas X-11 dengan tampilan Tab Menu Interaktif per Hari (Senin, Selasa, Rabu, Kamis, Jumat).
 
-Gunakan konsep visual "Newspaper / Zine Picnic Aesthetic" dengan detail yang sangat kaya, responsif (fokuskan visual mobile-friendly yang rapi, namun tetap bagus di desktop).
+Buatkan tampilan yang bersih, modern, dan responsive (enak dilihat di HP maupun Laptop) menggunakan HTML, CSS, dan JavaScript bawaan (vanilla).
 
---- SPESIFIKASI VISUAL ---
-1. Palette Warna:
-- Background utama: Krem Kertas (#F6F3EC) dengan tekstur garis tipis kertas (gunakan overlay pattern/CSS gradient jika mungkin).
-- Warna aksen: Merah Gingham Piknik (#C84B47) untuk detail koran & banner, Hijau Sage (#5B7B5B) untuk notice board.
-- Outline & border: Hitam Tinta (#1E1E1E), berikan stroke/border tebal (2px-4px) pada komponen dan double-line pada header koran.
-- Background card: Putih Gading Kertas (#FFFDF9).
+Gunakan data jadwal pelajaran berikut:
 
-2. Typography (Google Fonts):
-- Font Judul: 'Playfair Display' (Serif tebal, vintage newspaper).
-- Font Body & Label: 'Plus Jakarta Sans' (Clean, modern, aesthetic).
+1. Senin:
 
-3. Animasi:
-- Fade-in up untuk semua bagian saat di-scroll atau dibuka.
-- Efek hover yang membal/bounce (transform translate-y) & efek active yang tertekan untuk tombol (seperti stiker/kupon yang dipencet).
-- Efek glitch/bounce halus pada badge.
+07:40 - 09:00 : SJR / Dina
 
---- STRUKTUR & KONTEN HALAMAN ---
+09:00 - 09:40 : PABP / Bariyah
 
-1. Header Koran (THE ELEVATE GAZETTE):
-- Di bagian paling atas, berikan strip info: "VOL. X-11" | "SMAN 1 GRESIK" | "EST. '26-'27".
-- Double border tebal khas koran tua.
-- Judul Besar: "THE ELEVATE GAZETTE" dalam font Serif besar.
-- Badge berpola merah-putih gingham (seperti taplak piknik): "🧺 36 MEMBERS OFFICIAL PAGE".
+09:40 - 09:55 : Istirahat 1
 
-2. Headline Area (Card Profil Kelas):
-- Judul: "Sudut Digital Resmi Kelas X-11 Segera Meluncur!"
-- Taruh satu frame foto polaroid kosong bergaya scrapbook dengan label/caption miring "X-11 SMANSAGRES 📸".
-- Tambahkan teks berita mini: "ELEVATE Gazette kini hadir sebagai hub digital hangat untuk mencatat segala cerita, jadwal harian, dan pencapaian kita bersama."
+09:55 - 10:35 : FIS / Fauzi
 
-3. Notice Board (Makan Bergizi Gratis - MBG):
-- Kotak beralas hijau sage berpola garis putus-putus (dashed border), lengkap dengan pin/selotip di pojoknya.
-- Beri judul: "🍱 INFO MBG HARI INI".
-- Poin-poin informasi:
-  - "📌 Pengambilan: Diambil oleh petugas piket harian kelas."
-  - "🧹 Aturan: Wajib bersihkan meja & buang sampah pada tempatnya!"
-  - "🥗 Update Menu harian bisa langsung dicek via grup WhatsApp."
+10:35 - 11:55 : BIN / Dhofir
 
-4. Instagram & Social Hub (Kupon / Stamps):
-- Judul seksi: "✦ CONNECT WITH US ✦"
-- Buat tombol-tombol link sosial bergaya tiket/kupon sobek dengan icon & tanda panah "➔":
-  - "📸 Instagram (@x.elevatecorner)" (tombol merah gingham)
-  - "✉️ Email Resmi Kelas" (tombol hijau sage)
-  - "💬 Server Discord" (tombol biru ink)
+11:55 - 12:40 : Istirahat 2
 
-5. Footer:
-- Teks penutup: "PUBLISHED BY ELEVATE X-11 SMANSAGRES '26/27"
-- Tagline: "Rising Together, Excel Forever".
+12:40 - 14:00 : BIO / LilikBio
 
-Pastikan seluruh font ter-load dari Google Fonts, icon menggunakan emoji/FontAwesome, serta pastikan tidak ada element yang berantakan di layar kecil HP.
+14:00 - 14:40 : BK / Khabibatul
+
+14:40 - 16:00 : PP / Asti
+
+2. Selasa:
+
+07:00 - 08:20 : PKWU / Anita
+
+08:20 - 09:40 : SOS / Putri
+
+09:40 - 09:55 : Istirahat 1
+
+09:55 - 11:15 : EKO / Ervina
+
+11:15 - 11:55 : GEO / Cholila
+
+11:55 - 12:40 : Istirahat 2
+
+12:40 - 14:00 : BIG / Nisa
+
+14:00 - 14:40 : PJOK / Fazar
+
+14:40 - 16:00 : KIM / Novvy
+
+3. Rabu:
+
+07:00 - 08:20 : PJOK / Fazar
+
+08:20 - 09:40 : BIN / Dhofir
+
+09:40 - 09:55 : Istirahat 1
+
+09:55 - 11:15 : FIS / Fauzi
+
+11:15 - 11:55 : BIO / LilikBio
+
+11:55 - 12:40 : Istirahat 2
+
+12:40 - 14:00 : KIM / Novvy
+
+14:00 - 16:00 : MATU / Rachma
+
+4. Kamis:
+
+07:00 - 07:40 : EKO / Ervina
+
+07:40 - 08:20 : PABP / Bariyah
+
+08:20 - 09:40 : KKA / Endang
+
+09:40 - 09:55 : Istirahat 1
+
+09:55 - 11:15 : INFOR / Endang
+
+11:15 - 11:55 : BIG / Nisa
+
+11:55 - 12:40 : Istirahat 2
+
+12:40 - 14:00 : BJW / Nafi'
+
+14:00 - 15:20 : SOS / Putri
+
+5. Jumat:
+
+07:00 - 08:20 : SJR / Dina
+
+08:20 - 09:40 : GEO / Cholila
+
+09:40 - 09:55 : Istirahat 1
+
+09:55 - 11:55 : MATU / Rachma
+
+Buatkan tombol tab untuk tiap hari di mana saat tombol hari diklik, hanya jadwal hari tersebut yang tampil. Berikan juga warna pembeda khusus untuk jam Istirahat.
