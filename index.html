@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEVATE CORNER - X-11 SMAN 1 Gresik</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght:700,900&family=Plus+Jakarta+Sans:wght@400,500,600,700,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --cream-paper: #F6F3EC;
+            --red-gingham: #C84B47;
+            --sage-green: #5B7B5B;
+            --ink-black: #1E1E1E;
+            --ivory-white: #FFFDF9;
+            --yellow-sticky: #FFF8DC;
+            --blue-ink: #5865F2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--cream-paper);
+            color: var(--ink-black);
+            overflow-x: hidden;
+        }
+        
+        /* Paper Texture Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, var(--ink-black) 2px, var(--ink-black) 3px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, var(--ink-black) 2px, var(--ink-black) 3px);
+            background-size: 100% 20px, 20px 100%;
+            pointer-events: none;
+        }
+        
+        /* Serif Font for Headers */
+        h1, h2, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+        }
+        
+        /* Fade In Animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* Header Newspaper Style */
+        .newspaper-header {
+            background: var(--ivory-white);
+            border: 4px double var(--ink-black);
+            padding: 1.5rem 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .newspaper-header {
+                padding: 2rem;
+            }
+        }
+        
+        .top-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--ink-black);
+        }
+        
+        @media (min-width: 768px) {
+            .top-strip {
+                font-size: 0.875rem;
+                gap: 2rem;
+            }
+        }
+        
+        .gazette-title {
+            font-size: 2rem;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 2px;
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .gazette-title {
+                font-size: 3.5rem;
+                letter-spacing: 4px;
+            }
+        }
+        
+        /* Gingham Pattern Badge */
+        .gingham-badge {
+            display: inline-block;
+            position: relative;
+            background: 
+                repeating-linear-gradient(45deg, var(--red-gingham), var(--red-gingham) 10px, white 10px, white 20px),
+                repeating-linear-gradient(-45deg, var(--red-gingham), var(--red-gingham) 10px, white 10px, white 20px);
+            background-blend-mode: multiply;
+            padding: 0.75rem 1.5rem;
+            border: 3px solid var(--ink-black);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 var(--ink-black);
+            animation: bounce 2s ease infinite;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        /* Semi-transparent overlay for better text readability */
+        .gingham-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(200, 75, 71, 0.85);
+            z-index: 1;
+        }
+        
+        .gingham-badge::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+        }
+        
+        /* Hide original text but keep for accessibility */
+        .gingham-badge {
+            color: transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .gingham-badge {
+                font-size: 1rem;
+                padding: 1rem 2rem;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* Card Styling */
+        .card {
+            background: var(--ivory-white);
+            border: 3px solid var(--ink-black);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 6px 6px 0 rgba(30, 30, 30, 0.15);
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .card {
+                padding: 2rem;
+            }
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--ink-black);
+        }
+        
+        @media (min-width: 768px) {
+            .card-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Polaroid Frame */
+        .polaroid {
+            background: white;
+            border: 3px solid var(--ink-black);
+            padding: 1rem;
+            padding-bottom: 3rem;
+            transform: rotate(-2deg);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 1.5rem auto;
+            max-width: 280px;
+        }
+        
+        .polaroid-inner {
+            background: linear-gradient(135deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            aspect-ratio: 4/3;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            transform: rotate(-1deg);
+        }
+        
+        /* Notice Board */
+        .notice-board {
+            background: var(--sage-green);
+            border: 3px dashed white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            box-shadow: 6px 6px 0 rgba(30, 30, 30, 0.15);
+        }
+        
+        @media (min-width: 768px) {
+            .notice-board {
+                padding: 2rem;
+            }
+        }
+        
+        /* Push Pins */
+        .notice-board::before,
+        .notice-board::after {
+            content: '📌';
+            position: absolute;
+            font-size: 1.5rem;
+            top: -10px;
+        }
+        
+        .notice-board::before {
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+        
+        .notice-board::after {
+            right: 20px;
+            transform: rotate(15deg);
+        }
+        
+        .notice-title {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .notice-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .notice-item {
+            background: var(--ivory-white);
+            padding: 0.875rem;
+            margin-bottom: 0.75rem;
+            border: 2px solid var(--ink-black);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .notice-item {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+        
+        .notice-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Social Buttons - Coupon Style */
+        .social-hub {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .social-hub {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        .coupon-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border: 3px solid var(--ink-black);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-decoration: none;
+            color: var(--ink-black);
+            transition: all 0.2s ease;
+            box-shadow: 4px 4px 0 var(--ink-black);
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .coupon-button {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Coupon hole left */
+        .coupon-button .hole-left {
+            position: absolute;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--cream-paper);
+            border-radius: 50%;
+            border: 2px solid var(--ink-black);
+            z-index: 10;
+        }
+        
+        /* Coupon hole right */
+        .coupon-button .hole-right {
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--cream-paper);
+            border-radius: 50%;
+            border: 2px solid var(--ink-black);
+            z-index: 10;
+        }
+        
+        .coupon-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 6px 6px 0 var(--ink-black);
+        }
+        
+        .coupon-button:active {
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 var(--ink-black);
+        }
+        
+        .coupon-red {
+            background: var(--red-gingham);
+            position: relative;
+        }
+        
+        /* Gingham pattern overlay */
+        .coupon-red .gingham-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 20px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Make sure text and icons are above the overlay */
+        .coupon-red > div,
+        .coupon-red > span {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .coupon-green {
+            background: var(--sage-green);
+            color: white;
+        }
+        
+        .coupon-blue {
+            background: #5865F2;
+            color: white;
+        }
+        
+        .coupon-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+        
+        .coupon-arrow {
+            font-size: 1.25rem;
+            margin-left: 0.75rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 3px double var(--ink-black);
+            margin-top: 3rem;
+        }
+        
+        .footer-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-title {
+                font-size: 0.875rem;
+            }
+        }
+        
+        .footer-tagline {
+            font-style: italic;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--red-gingham);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-tagline {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* Responsive Text */
+        .headline-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .headline-text {
+                font-size: 1.125rem;
+            }
+        }
+        
+        /* Quick Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: var(--ivory-white);
+            border: 3px solid var(--ink-black);
+            padding: 1.25rem;
+            text-align: center;
+            box-shadow: 4px 4px 0 rgba(30, 30, 30, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px) rotate(1deg);
+            box-shadow: 6px 6px 0 rgba(30, 30, 30, 0.25);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red-gingham);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+        
+        /* Schedule Table */
+        .schedule-day {
+            background: var(--ivory-white);
+            border: 3px solid var(--ink-black);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-day:hover {
+            background: var(--yellow-sticky);
+            transform: translateX(5px);
+        }
+        
+        .schedule-day.active {
+            background: var(--sage-green);
+            color: white;
+        }
+        
+        .schedule-day.active .day-name {
+            color: white;
+        }
+        
+        .day-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--red-gingham);
+        }
+        
+        .schedule-subjects {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        /* Countdown Timer */
+        .countdown-box {
+            background: var(--red-gingham);
+            border: 4px solid var(--ink-black);
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            pointer-events: none;
+        }
+        
+        .countdown-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-title {
+                font-size: 1.25rem;
+            }
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-timer {
+                gap: 1.5rem;
+            }
+        }
+        
+        .countdown-item {
+            background: var(--ivory-white);
+            color: var(--ink-black);
+            border: 3px solid var(--ink-black);
+            padding: 0.75rem;
+            min-width: 70px;
+            border-radius: 8px;
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-item {
+                padding: 1rem;
+                min-width: 90px;
+            }
+        }
+        
+        .countdown-number {
+            font-size: 1.75rem;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .countdown-label {
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-label {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            background: white;
+            border: 3px solid var(--ink-black);
+            padding: 0.5rem;
+            padding-bottom: 2rem;
+            transform: rotate(0deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:nth-child(odd) {
+            transform: rotate(-2deg);
+        }
+        
+        .gallery-item:nth-child(even) {
+            transform: rotate(2deg);
+        }
+        
+        .gallery-item:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            border: 2px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            right: 0.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Sticky Note */
+        .sticky-note {
+            background: var(--yellow-sticky);
+            border: 2px solid #e5d9a8;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.15);
+            transform: rotate(-1deg);
+            position: relative;
+        }
+        
+        .sticky-note::before {
+            content: '📌';
+            position: absolute;
+            top: -8px;
+            right: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .sticky-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: var(--red-gingham);
+        }
+        
+        .sticky-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sticky-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #d4c79f;
+            font-size: 0.9rem;
+        }
+        
+        .sticky-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Achievement Badge */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .achievement-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .achievement-badge {
+            background: var(--ivory-white);
+            border: 3px solid var(--ink-black);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(30, 30, 30, 0.15);
+        }
+        
+        .achievement-badge:hover {
+            transform: rotate(360deg) scale(1.1);
+            background: var(--sage-green);
+            color: white;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        
+        .nav-tab {
+            background: var(--ivory-white);
+            border: 3px solid var(--ink-black);
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+        
+        .nav-tab:hover {
+            background: var(--yellow-sticky);
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: var(--sage-green);
+            color: white;
+            box-shadow: 4px 4px 0 rgba(30, 30, 30, 0.25);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: var(--ivory-white);
+            border-left: 5px solid var(--red-gingham);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.125rem;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .quote-author {
+            font-style: normal;
+            font-weight: 700;
+            margin-top: 0.75rem;
+            color: var(--red-gingham);
+            text-align: right;
+        }
+        
+        /* Member Counter Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse {
+            animation: pulse 2s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Newspaper Header -->
+        <header class="newspaper-header fade-in-up">
+            <div class="top-strip">
+                <span>VOL. X-11</span>
+                <span>|</span>
+                <span>SMAN 1 GRESIK</span>
+                <span>|</span>
+                <span>EST. '26-'27</span>
+            </div>
+            
+            <h1 class="gazette-title">THE ELEVATE GAZETTE</h1>
+            
+            <div style="text-align: center;">
+                <div class="gingham-badge pulse" data-text="🧺 36 MEMBERS OFFICIAL PAGE">
+                    🧺 36 MEMBERS OFFICIAL PAGE
+                </div>
+            </div>
+        </header>
+        
+        <!-- Quick Stats -->
+        <section class="fade-in-up delay-1">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">36</div>
+                    <div class="stat-label">Siswa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Mapel</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Spirit</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Vibes</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Countdown Event -->
+        <section class="countdown-box fade-in-up delay-2">
+            <div class="countdown-title">⏰ Countdown Ujian Tengah Semester</div>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">30</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">12</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">45</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">30</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Navigation Tabs -->
+        <section class="fade-in-up delay-3">
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="switchTab('jadwal')">📚 Jadwal</div>
+                <div class="nav-tab" onclick="switchTab('gallery')">📸 Gallery</div>
+                <div class="nav-tab" onclick="switchTab('achievement')">🏆 Prestasi</div>
+                <div class="nav-tab" onclick="switchTab('info')">� Info</div>
+            </div>
+            
+            <!-- Tab: Jadwal Pelajaran -->
+            <div id="tab-jadwal" class="tab-content active">
+                <div class="card">
+                    <h2 class="card-title serif">📖 Jadwal Pelajaran Minggu Ini</h2>
+                    
+                    <div class="schedule-day active">
+                        <div class="day-name">🌅 Senin</div>
+                        <div class="schedule-subjects">
+                            Matematika • Bahasa Indonesia • Fisika • Kimia • Bahasa Inggris
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-name">🌤️ Selasa</div>
+                        <div class="schedule-subjects">
+                            Biologi • Sejarah • Geografi • Ekonomi • Seni Budaya
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-name">☀️ Rabu</div>
+                        <div class="schedule-subjects">
+                            Matematika • PKN • Bahasa Inggris • Olahraga • Prakarya
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-name">🌥️ Kamis</div>
+                        <div class="schedule-subjects">
+                            Fisika • Kimia • Biologi • Bahasa Indonesia • Informatika
+                        </div>
+                    </div>
+                    
+                    <div class="schedule-day">
+                        <div class="day-name">🌆 Jumat</div>
+                        <div class="schedule-subjects">
+                            PAI • Bahasa Jawa • Matematika • Sejarah • BK
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab: Gallery -->
+            <div id="tab-gallery" class="tab-content">
+                <div class="card">
+                    <h2 class="card-title serif">📸 Momen Berharga Kita</h2>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">📷</div>
+                            <div class="gallery-caption">Hari Pertama</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">🎉</div>
+                            <div class="gallery-caption">Class Party</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">📚</div>
+                            <div class="gallery-caption">Study Group</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">🏃</div>
+                            <div class="gallery-caption">Olahraga</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">🎭</div>
+                            <div class="gallery-caption">Pentas Seni</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">🌳</div>
+                            <div class="gallery-caption">Field Trip</div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; color: #888; font-size: 0.875rem; font-style: italic;">
+                        Upload foto-foto kegiatan kelas akan segera hadir!
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Tab: Achievement -->
+            <div id="tab-achievement" class="tab-content">
+                <div class="card">
+                    <h2 class="card-title serif">🏆 Pencapaian Kelas X-11</h2>
+                    
+                    <div class="achievement-grid">
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">🥇</div>
+                            <div class="achievement-text">Juara 1 Kelas Terbersih</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">📊</div>
+                            <div class="achievement-text">Rata-rata Tertinggi</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">🎨</div>
+                            <div class="achievement-text">Lomba Mading</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">⚽</div>
+                            <div class="achievement-text">Juara Futsal</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">🎤</div>
+                            <div class="achievement-text">Best Performance</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">🤝</div>
+                            <div class="achievement-text">Best Teamwork</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-box">
+                        "Prestasi bukan tentang menjadi yang terbaik, tapi tentang menjadi lebih baik dari kemarin."
+                        <div class="quote-author">— X-11 ELEVATE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab: Info -->
+            <div id="tab-info" class="tab-content">
+                <!-- Notice Board MBG -->
+                <div class="notice-board">
+                    <h3 class="notice-title">🍱 INFO MBG HARI INI</h3>
+                    
+                    <div class="notice-item">
+                        <strong>📌 Pengambilan:</strong> Diambil oleh petugas piket harian kelas.
+                    </div>
+                    
+                    <div class="notice-item">
+                        <strong>🧹 Aturan:</strong> Wajib bersihkan meja & buang sampah pada tempatnya!
+                    </div>
+                    
+                    <div class="notice-item">
+                        <strong>🥗 Update Menu:</strong> Menu harian bisa langsung dicek via grup WhatsApp.
+                    </div>
+                </div>
+                
+                <!-- Sticky Notes -->
+                <div class="sticky-note">
+                    <div class="sticky-title">📝 Reminder Minggu Ini</div>
+                    <ul class="sticky-list">
+                        <li>✓ Kumpulkan tugas Matematika (Deadline: Rabu)</li>
+                        <li>✓ Persiapan presentasi Bahasa Indonesia</li>
+                        <li>✓ Praktikum Kimia - bawa jas lab</li>
+                        <li>✓ Meeting OSIS: Kamis, 15.00 WIB</li>
+                        <li>✓ Iuran kas kelas: Rp 10.000</li>
+                    </ul>
+                </div>
+                
+                <!-- Jadwal Piket -->
+                <div class="card">
+                    <h3 class="card-title serif">🧹 Jadwal Piket Kelas</h3>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--sage-green); color: white;">
+                                    <th style="padding: 0.75rem; border: 2px solid var(--ink-black);">Hari</th>
+                                    <th style="padding: 0.75rem; border: 2px solid var(--ink-black);">Petugas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Senin</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 1 (6 orang)</td>
+                                </tr>
+                                <tr style="background: var(--ivory-white);">
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Selasa</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 2 (6 orang)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Rabu</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 3 (6 orang)</td>
+                                </tr>
+                                <tr style="background: var(--ivory-white);">
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Kamis</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 4 (6 orang)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Jumat</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 5 (6 orang)</td>
+                                </tr>
+                                <tr style="background: var(--ivory-white);">
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black); font-weight: 600;">Sabtu</td>
+                                    <td style="padding: 0.75rem; border: 2px solid var(--ink-black);">Kelompok 6 (6 orang)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Social Hub -->
+        <section class="fade-in-up delay-4">
+            <h2 class="section-title serif">✦ CONNECT WITH US ✦</h2>
+            
+            <div class="social-hub">
+                <a href="https://instagram.com/x.elevatecorner" target="_blank" class="coupon-button coupon-red">
+                    <span class="hole-left"></span>
+                    <span class="hole-right"></span>
+                    <span class="gingham-overlay"></span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="coupon-icon">📸</span>
+                        <span>Instagram @x.elevatecorner</span>
+                    </div>
+                    <span class="coupon-arrow">➔</span>
+                </a>
+                
+                <a href="mailto:elevate.x11@smansagres.sch.id" class="coupon-button coupon-green">
+                    <span class="hole-left"></span>
+                    <span class="hole-right"></span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="coupon-icon">✉️</span>
+                        <span>Email Resmi Kelas</span>
+                    </div>
+                    <span class="coupon-arrow">➔</span>
+                </a>
+                
+                <a href="https://discord.gg/PwZTm5gmW" class="coupon-button coupon-blue">
+                    <span class="hole-left"></span>
+                    <span class="hole-right"></span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="coupon-icon">💬</span>
+                        <span>Server Discord</span>
+                    </div>
+                    <span class="coupon-arrow">➔</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Fun Fact -->
+        <section class="card fade-in-up delay-5">
+            <h2 class="card-title serif">💡 Tahukah Kamu?</h2>
+            <p class="headline-text">
+                <strong>ELEVATE</strong> bukan hanya nama kelas, tapi juga filosofi kita: 
+                <em>"Elevate yourself, elevate others, elevate together!"</em> 
+                Setiap anggota X-11 punya peran penting dalam menciptakan lingkungan belajar yang positif dan suportif. 
+                Mari kita terus naik bersama menuju kesuksesan! 🚀
+            </p>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer fade-in-up delay-5">
+            <div class="footer-title">PUBLISHED BY ELEVATE X-11 SMANSAGRES '26/27</div>
+            <div class="footer-tagline">"Rising Together, Excel Forever"</div>
+            <div style="margin-top: 1rem; font-size: 0.875rem; color: #888;">
+                Made with ❤️ by X-11 Digital Team
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Tab Switcher
+        function switchTab(tabName) {
+            // Hide all tabs
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all nav tabs
+            const allNavTabs = document.querySelectorAll('.nav-tab');
+            allNavTabs.forEach(nav => nav.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+        }
+        
+        // Countdown Timer
+        function updateCountdown() {
+            // Set target date (30 days from now for example - ganti sesuai tanggal UTS)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 30);
+            
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Schedule Day Click Handler
+        const scheduleDays = document.querySelectorAll('.schedule-day');
+        scheduleDays.forEach(day => {
+            day.addEventListener('click', function() {
+                scheduleDays.forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Get current day and highlight it
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const today = days[new Date().getDay()];
+        
+        scheduleDays.forEach(day => {
+            if (day.textContent.includes(today)) {
+                day.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

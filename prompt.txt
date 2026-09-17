@@ -1,0 +1,54 @@
+mereka minta gini:
+Buatkan kode website full visual (HTML, CSS internal, Tailwind CDN, dan Font) dalam satu file `index.html` untuk landing page/hub kelas X-11 SMAN 1 Gresik bernama ELEVATE CORNER. 
+
+Gunakan konsep visual "Newspaper / Zine Picnic Aesthetic" dengan detail yang sangat kaya, responsif (fokuskan visual mobile-friendly yang rapi, namun tetap bagus di desktop).
+
+--- SPESIFIKASI VISUAL ---
+1. Palette Warna:
+- Background utama: Krem Kertas (#F6F3EC) dengan tekstur garis tipis kertas (gunakan overlay pattern/CSS gradient jika mungkin).
+- Warna aksen: Merah Gingham Piknik (#C84B47) untuk detail koran & banner, Hijau Sage (#5B7B5B) untuk notice board.
+- Outline & border: Hitam Tinta (#1E1E1E), berikan stroke/border tebal (2px-4px) pada komponen dan double-line pada header koran.
+- Background card: Putih Gading Kertas (#FFFDF9).
+
+2. Typography (Google Fonts):
+- Font Judul: 'Playfair Display' (Serif tebal, vintage newspaper).
+- Font Body & Label: 'Plus Jakarta Sans' (Clean, modern, aesthetic).
+
+3. Animasi:
+- Fade-in up untuk semua bagian saat di-scroll atau dibuka.
+- Efek hover yang membal/bounce (transform translate-y) & efek active yang tertekan untuk tombol (seperti stiker/kupon yang dipencet).
+- Efek glitch/bounce halus pada badge.
+
+--- STRUKTUR & KONTEN HALAMAN ---
+
+1. Header Koran (THE ELEVATE GAZETTE):
+- Di bagian paling atas, berikan strip info: "VOL. X-11" | "SMAN 1 GRESIK" | "EST. '26-'27".
+- Double border tebal khas koran tua.
+- Judul Besar: "THE ELEVATE GAZETTE" dalam font Serif besar.
+- Badge berpola merah-putih gingham (seperti taplak piknik): "🧺 36 MEMBERS OFFICIAL PAGE".
+
+2. Headline Area (Card Profil Kelas):
+- Judul: "Sudut Digital Resmi Kelas X-11 Segera Meluncur!"
+- Taruh satu frame foto polaroid kosong bergaya scrapbook dengan label/caption miring "X-11 SMANSAGRES 📸".
+- Tambahkan teks berita mini: "ELEVATE Gazette kini hadir sebagai hub digital hangat untuk mencatat segala cerita, jadwal harian, dan pencapaian kita bersama."
+
+3. Notice Board (Makan Bergizi Gratis - MBG):
+- Kotak beralas hijau sage berpola garis putus-putus (dashed border), lengkap dengan pin/selotip di pojoknya.
+- Beri judul: "🍱 INFO MBG HARI INI".
+- Poin-poin informasi:
+  - "📌 Pengambilan: Diambil oleh petugas piket harian kelas."
+  - "🧹 Aturan: Wajib bersihkan meja & buang sampah pada tempatnya!"
+  - "🥗 Update Menu harian bisa langsung dicek via grup WhatsApp."
+
+4. Instagram & Social Hub (Kupon / Stamps):
+- Judul seksi: "✦ CONNECT WITH US ✦"
+- Buat tombol-tombol link sosial bergaya tiket/kupon sobek dengan icon & tanda panah "➔":
+  - "📸 Instagram (@x.elevatecorner)" (tombol merah gingham)
+  - "✉️ Email Resmi Kelas" (tombol hijau sage)
+  - "💬 Server Discord" (tombol biru ink)
+
+5. Footer:
+- Teks penutup: "PUBLISHED BY ELEVATE X-11 SMANSAGRES '26/27"
+- Tagline: "Rising Together, Excel Forever".
+
+Pastikan seluruh font ter-load dari Google Fonts, icon menggunakan emoji/FontAwesome, serta pastikan tidak ada element yang berantakan di layar kecil HP.

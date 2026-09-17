@@ -1,0 +1,301 @@
+═══════════════════════════════════════════════════════════════════════════
+  📚 PANDUAN DEPLOY ELEVATE CORNER KE NETLIFY + GITHUB (UNTUK PEMULA)
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 HASIL AKHIR: Website kamu online + auto-update setiap kali edit code!
+
+═══════════════════════════════════════════════════════════════════════════
+BAGIAN 1: PERSIAPAN (INSTALL GIT)
+═══════════════════════════════════════════════════════════════════════════
+
+1. CEK APAKAH GIT SUDAH TERINSTALL
+   Buka PowerShell atau Command Prompt, ketik:
+   
+   git --version
+   
+   ✅ Jika muncul versi (misal: git version 2.40.0) → Git sudah ada, lanjut ke BAGIAN 2
+   ❌ Jika muncul error → Lanjut ke langkah 2
+
+2. DOWNLOAD & INSTALL GIT
+   • Buka: https://git-scm.com/download/win
+   • Download "64-bit Git for Windows Setup"
+   • Jalankan installer
+   • Klik "Next" terus sampai selesai (pakai default settings aja)
+   • Restart PowerShell/Command Prompt setelah install
+
+3. SETUP IDENTITAS GIT (WAJIB, SEKALI AJA)
+   Buka PowerShell, ketik satu-satu:
+   
+   git config --global user.name "Nama Kamu"
+   git config --global user.email "email@kamu.com"
+   
+   Contoh:
+   git config --global user.name "Andi Wijaya"
+   git config --global user.email "andi@gmail.com"
+
+═══════════════════════════════════════════════════════════════════════════
+BAGIAN 2: BUAT AKUN GITHUB
+═══════════════════════════════════════════════════════════════════════════
+
+1. DAFTAR GITHUB (GRATIS)
+   • Buka: https://github.com/signup
+   • Isi username, email, password
+   • Verifikasi email kamu
+   • Login ke GitHub
+
+2. BUAT REPOSITORY BARU
+   • Klik tombol hijau "New" atau "+" di pojok kanan atas
+   • Repository name: elevate-corner
+   • Description: Website Kelas X-11 ELEVATE CORNER
+   • Pilih "Public" (gratis)
+   • ❌ JANGAN centang "Add a README file"
+   • Klik "Create repository"
+   
+   📌 SIMPAN URL REPOSITORY (akan muncul setelah dibuat)
+   Contoh: https://github.com/username-kamu/elevate-corner.git
+
+═══════════════════════════════════════════════════════════════════════════
+BAGIAN 3: UPLOAD CODE KE GITHUB
+═══════════════════════════════════════════════════════════════════════════
+
+1. BUKA POWERSHELL DI FOLDER ELEVATE
+   • Buka folder: C:\Users\ASUS TUF\ELEVATE
+   • Klik kanan di area kosong → "Open in Terminal" atau "Open PowerShell here"
+   
+   ATAU ketik di PowerShell:
+   cd "C:\Users\ASUS TUF\ELEVATE"
+
+2. INISIALISASI GIT (SEKALI AJA)
+   Ketik satu-satu (tekan Enter setiap baris):
+   
+   git init
+   
+   ✅ Akan muncul: "Initialized empty Git repository..."
+
+3. TAMBAHKAN FILE INDEX.HTML
+   
+   git add index.html
+   
+   ✅ Tidak ada pesan error = berhasil
+
+4. BUAT COMMIT PERTAMA
+   
+   git commit -m "Initial commit - ELEVATE CORNER website"
+   
+   ✅ Akan muncul info file yang di-commit
+
+5. UBAH BRANCH KE MAIN
+   
+   git branch -M main
+   
+   ✅ Tidak ada pesan = berhasil
+
+6. HUBUNGKAN KE GITHUB REPOSITORY
+   
+   git remote add origin https://github.com/username-kamu/elevate-corner.git
+   
+   ⚠️ GANTI "username-kamu" dengan username GitHub kamu!
+   
+   Contoh:
+   git remote add origin https://github.com/andiwijaya/elevate-corner.git
+
+7. UPLOAD KE GITHUB
+   
+   git push -u origin main
+   
+   📌 Akan muncul jendela login GitHub:
+   • Pilih "Sign in with your browser"
+   • Login dengan akun GitHub kamu
+   • Klik "Authorize"
+   
+   ✅ Tunggu sampai muncul: "Branch 'main' set up to track..."
+
+8. CEK DI GITHUB
+   • Buka browser → https://github.com/username-kamu/elevate-corner
+   • File index.html sudah muncul! ✅
+
+═══════════════════════════════════════════════════════════════════════════
+BAGIAN 4: DEPLOY KE NETLIFY (AUTO-DEPLOY)
+═══════════════════════════════════════════════════════════════════════════
+
+1. BUAT AKUN NETLIFY
+   • Buka: https://www.netlify.com
+   • Klik "Sign up"
+   • Pilih "Sign up with GitHub" (lebih mudah!)
+   • Login dengan GitHub kamu
+   • Klik "Authorize Netlify"
+
+2. DEPLOY SITE DARI GITHUB
+   • Di Netlify dashboard, klik "Add new site"
+   • Pilih "Import an existing project"
+   • Klik "Deploy with GitHub"
+   • Pilih repository: elevate-corner
+   • Klik "Deploy elevate-corner"
+   
+   ✅ Tunggu 10-30 detik...
+
+3. WEBSITE SUDAH ONLINE! 🎉
+   • Netlify akan kasih URL random, misal:
+     https://remarkable-unicorn-abc123.netlify.app
+   
+   • Buka URL tersebut → Website kamu sudah online!
+
+4. (OPSIONAL) GANTI NAMA DOMAIN
+   • Di Netlify dashboard → Site settings
+   • Domain management → Options → Edit site name
+   • Ganti jadi: elevate-corner
+   • Save
+   
+   ✅ URL baru: https://elevate-corner.netlify.app
+
+═══════════════════════════════════════════════════════════════════════════
+BAGIAN 5: CARA UPDATE WEBSITE (SETIAP KALI EDIT CODE)
+═══════════════════════════════════════════════════════════════════════════
+
+📝 SETIAP KALI KAMU EDIT index.html:
+
+1. Buka PowerShell di folder ELEVATE
+   
+   cd "C:\Users\ASUS TUF\ELEVATE"
+
+2. Cek perubahan
+   
+   git status
+   
+   (akan muncul file yang berubah)
+
+3. Tambahkan perubahan
+   
+   git add index.html
+
+4. Buat commit dengan deskripsi
+   
+   git commit -m "Update jadwal pelajaran"
+   
+   Tips pesan commit:
+   • "Update jadwal pelajaran"
+   • "Tambah foto gallery"
+   • "Perbaiki bug countdown timer"
+   • "Ganti warna tombol"
+
+5. Upload ke GitHub
+   
+   git push
+   
+   ✅ Netlify OTOMATIS update website dalam 10-30 detik!
+
+6. Cek website kamu
+   Refresh browser → perubahan sudah muncul! 🎉
+
+═══════════════════════════════════════════════════════════════════════════
+CHEAT SHEET - PERINTAH PENTING
+═══════════════════════════════════════════════════════════════════════════
+
+Masuk ke folder project:
+  cd "C:\Users\ASUS TUF\ELEVATE"
+
+Cek status perubahan:
+  git status
+
+Tambah semua file yang berubah:
+  git add .
+
+Atau tambah file tertentu:
+  git add index.html
+
+Commit perubahan:
+  git commit -m "Deskripsi perubahan"
+
+Upload ke GitHub:
+  git push
+
+Lihat history commit:
+  git log
+
+Batalkan perubahan (belum di-commit):
+  git restore index.html
+
+═══════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING - MASALAH UMUM
+═══════════════════════════════════════════════════════════════════════════
+
+❌ MASALAH: "git: command not found"
+✅ SOLUSI: Git belum terinstall, ulangi BAGIAN 1
+
+❌ MASALAH: "fatal: not a git repository"
+✅ SOLUSI: Kamu belum di folder yang benar atau belum git init
+   Pastikan di: C:\Users\ASUS TUF\ELEVATE
+
+❌ MASALAH: "fatal: remote origin already exists"
+✅ SOLUSI: Remote sudah ditambahkan sebelumnya, skip langkah ini
+
+❌ MASALAH: "error: failed to push some refs"
+✅ SOLUSI: Jalankan dulu:
+   git pull origin main --rebase
+   Lalu:
+   git push
+
+❌ MASALAH: Login GitHub terus-terusan
+✅ SOLUSI: Install GitHub Desktop atau setup Personal Access Token:
+   https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+❌ MASALAH: Website tidak update di Netlify
+✅ SOLUSI: 
+   1. Cek di GitHub apakah file sudah terupload
+   2. Cek di Netlify → Deploys → lihat status
+   3. Tunggu 1-2 menit, kadang ada delay
+   4. Hard refresh browser: Ctrl + Shift + R
+
+═══════════════════════════════════════════════════════════════════════════
+TIPS & BEST PRACTICES
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Commit sesering mungkin (setiap fitur kecil selesai)
+✅ Tulis pesan commit yang jelas dan deskriptif
+✅ Selalu git status sebelum commit (cek apa yang berubah)
+✅ Backup: GitHub = backup otomatis code kamu!
+✅ Jangan commit file besar (gambar >5MB, video)
+✅ Test dulu di local (buka index.html di browser) sebelum push
+
+═══════════════════════════════════════════════════════════════════════════
+WORKFLOW HARIAN
+═══════════════════════════════════════════════════════════════════════════
+
+1. Edit code di VS Code/editor
+2. Save file (Ctrl + S)
+3. Buka di browser lokal → test dulu
+4. Kalau sudah OK:
+   
+   cd "C:\Users\ASUS TUF\ELEVATE"
+   git add index.html
+   git commit -m "Deskripsi update"
+   git push
+   
+5. Tunggu 30 detik
+6. Website online sudah update! ✅
+
+═══════════════════════════════════════════════════════════════════════════
+RESOURCES - BELAJAR LEBIH LANJUT
+═══════════════════════════════════════════════════════════════════════════
+
+📚 Git Tutorial (Bahasa Indonesia):
+   https://www.petanikode.com/tutorial/git/
+
+📚 GitHub Tutorial:
+   https://www.youtube.com/watch?v=RGOj5yH7evk (Indonesia)
+
+📚 Netlify Docs:
+   https://docs.netlify.com/
+
+📚 Git Cheat Sheet:
+   https://education.github.com/git-cheat-sheet-education.pdf
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎉 SELAMAT! Kamu sudah jadi developer profesional dengan workflow modern!
+
+Pertanyaan? Masalah? Chat lagi aja! 😊
+
+Good luck! 🚀
+
+═══════════════════════════════════════════════════════════════════════════
