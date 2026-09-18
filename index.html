@@ -112,50 +112,78 @@
         
         /* Auth Button in Header */
         .auth-section {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             display: flex;
             gap: 0.5rem;
             align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        @media (min-width: 768px) {
+            .auth-section {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                margin-top: 0;
+            }
         }
         
         .auth-btn {
             background: var(--sage-green);
             color: white;
-            border: 2px solid var(--ink-black);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
+            border: 3px solid var(--ink-black);
+            padding: 0.6rem 1.25rem;
+            font-size: 0.875rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+        }
+        
+        @media (min-width: 768px) {
+            .auth-btn {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
         }
         
         .auth-btn:hover {
             background: var(--red-gingham);
             transform: translateY(-2px);
-            box-shadow: 2px 2px 0 var(--ink-black);
+            box-shadow: 4px 4px 0 var(--ink-black);
         }
         
         .user-badge {
-            background: var(--ivory-white);
-            border: 2px solid var(--ink-black);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
+            background: var(--yellow-sticky);
+            border: 3px solid var(--ink-black);
+            padding: 0.6rem 1.25rem;
+            font-size: 0.875rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+        }
+        
+        @media (min-width: 768px) {
+            .user-badge {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
         }
         
         .role-badge {
             background: var(--red-gingham);
             color: white;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.625rem;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
             border-radius: 3px;
+            border: 2px solid var(--ink-black);
         }
         
         /* Modal Styles */
