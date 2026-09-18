@@ -448,17 +448,6 @@
         .hidden {
             display: none;
         }
-            border: 4px double var(--ink-black);
-            padding: 1.5rem 1rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        @media (min-width: 768px) {
-            .newspaper-header {
-                padding: 2rem;
-            }
-        }
         
         .top-strip {
             display: flex;
@@ -1490,77 +1479,125 @@
             </div>
         </header>
         
-        <!-- Admin Panel (Only visible for ADMIN role) -->
-        <section id="adminPanel" class="admin-panel fade-in-up delay-1">
-            <h2 class="card-title serif">🔐 Panel Manajemen Role (Admin Only)</h2>
-            <p style="margin-bottom: 1rem; font-size: 0.875rem; color: #666;">
-                Kelola role pengguna di sini. Hanya admin yang dapat mengakses panel ini.
-            </p>
-            <div id="userList" class="user-list">
-                <!-- User list will be populated here -->
-                <p style="text-align: center; color: #888;">Memuat data pengguna...</p>
-            </div>
-        </section>
-        
-        <!-- Quick Stats -->
-        <section class="fade-in-up delay-1">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">36</div>
-                    <div class="stat-label">Siswa</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Mapel</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Spirit</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Vibes</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Countdown Event (Hidden for now - uncomment when needed) -->
-        <!-- 
-        <section class="countdown-box fade-in-up delay-2">
-            <div class="countdown-title">⏰ Countdown Ujian Tengah Semester</div>
-            <div class="countdown-timer">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">30</div>
-                    <div class="countdown-label">Hari</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">12</div>
-                    <div class="countdown-label">Jam</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">45</div>
-                    <div class="countdown-label">Menit</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">30</div>
-                    <div class="countdown-label">Detik</div>
-                </div>
-            </div>
-        </section>
-        -->
-        
-        <!-- Navigation Tabs -->
-        <section class="fade-in-up delay-3">
-            <div class="nav-tabs">
-                <div class="nav-tab active" onclick="switchTab('jadwal')">📚 Jadwal</div>
-                <!-- Disembunyikan dulu sampai ada konten -->
-                <!-- <div class="nav-tab" onclick="switchTab('gallery')">📸 Gallery</div> -->
-                <!-- <div class="nav-tab" onclick="switchTab('achievement')">🏆 Prestasi</div> -->
-                <div class="nav-tab" onclick="switchTab('info')">📌 Info</div>
+        <!-- Main Navigation Tabs (Role-based) -->
+        <nav class="main-nav-tabs fade-in-up delay-1">
+            <!-- Beranda - Semua Role -->
+            <div class="main-nav-tab active" onclick="switchMainTab('beranda')" data-tab="beranda">
+                🏠 Beranda
             </div>
             
-            <!-- Tab: Jadwal Pelajaran -->
-            <div id="tab-jadwal" class="tab-content active">
+            <!-- Jadwal - Semua Role -->
+            <div class="main-nav-tab" onclick="switchMainTab('jadwal')" data-tab="jadwal">
+                📚 Jadwal
+            </div>
+            
+            <!-- Gallery - ELEVATE STUDENTS, PENGURUS, ADMIN -->
+            <div class="main-nav-tab tab-hidden" onclick="switchMainTab('gallery')" data-tab="gallery" data-roles="ELEVATE STUDENTS,PENGURUS,ADMIN">
+                📸 Gallery
+            </div>
+            
+            <!-- Prestasi - ELEVATE STUDENTS, PENGURUS, ADMIN -->
+            <div class="main-nav-tab tab-hidden" onclick="switchMainTab('prestasi')" data-tab="prestasi" data-roles="ELEVATE STUDENTS,PENGURUS,ADMIN">
+                🏆 Prestasi
+            </div>
+            
+            <!-- Info - Semua Role -->
+            <div class="main-nav-tab" onclick="switchMainTab('info')" data-tab="info">
+                📌 Info
+            </div>
+            
+            <!-- Edit Konten - PENGURUS, ADMIN -->
+            <div class="main-nav-tab tab-hidden" onclick="switchMainTab('edit')" data-tab="edit" data-roles="PENGURUS,ADMIN">
+                ✏️ Edit Konten
+            </div>
+            
+            <!-- Manajemen User - ADMIN -->
+            <div class="main-nav-tab tab-hidden" onclick="switchMainTab('manage')" data-tab="manage" data-roles="ADMIN">
+                🔐 Manajemen User
+            </div>
+            
+            <!-- Pengaturan - ADMIN -->
+            <div class="main-nav-tab tab-hidden" onclick="switchMainTab('settings')" data-tab="settings" data-roles="ADMIN">
+                ⚙️ Pengaturan
+            </div>
+        </nav>
+        
+        <!-- TAB CONTENT: BERANDA -->
+        <div id="main-tab-beranda" class="main-tab-content active">
+            <!-- Quick Stats -->
+            <section class="fade-in-up delay-2">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">36</div>
+                        <div class="stat-label">Siswa</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Mapel</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Spirit</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Vibes</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Fun Fact -->
+            <section class="card fade-in-up delay-3">
+                <h2 class="card-title serif">💡 Tahukah Kamu?</h2>
+                <p class="headline-text">
+                    <strong>ELEVATE</strong> bukan hanya nama kelas, tapi juga filosofi kita: 
+                    <em>"Elevate yourself, elevate others, elevate together!"</em> 
+                    Setiap anggota X-11 punya peran penting dalam menciptakan lingkungan belajar yang positif dan suportif. 
+                    Mari kita terus naik bersama menuju kesuksesan! 🚀
+                </p>
+            </section>
+            
+            <!-- Social Hub -->
+            <section class="fade-in-up delay-4">
+                <h2 class="section-title serif">✦ CONNECT WITH US ✦</h2>
+                
+                <div class="social-hub">
+                    <a href="https://instagram.com/x.elevatecorner" target="_blank" class="coupon-button coupon-red">
+                        <span class="hole-left"></span>
+                        <span class="hole-right"></span>
+                        <span class="gingham-overlay"></span>
+                        <div style="display: flex; align-items: center;">
+                            <span class="coupon-icon">📸</span>
+                            <span>Instagram @x.elevatecorner</span>
+                        </div>
+                        <span class="coupon-arrow">➔</span>
+                    </a>
+                    
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=xeleven2627@gmail.com" target="_blank" class="coupon-button coupon-green">
+                        <span class="hole-left"></span>
+                        <span class="hole-right"></span>
+                        <div style="display: flex; align-items: center;">
+                            <span class="coupon-icon">✉️</span>
+                            <span>Email Resmi Kelas</span>
+                        </div>
+                        <span class="coupon-arrow">➔</span>
+                    </a>
+                    
+                    <a href="#" class="coupon-button coupon-blue">
+                        <span class="hole-left"></span>
+                        <span class="hole-right"></span>
+                        <div style="display: flex; align-items: center;">
+                            <span class="coupon-icon">💬</span>
+                            <span>Server Discord</span>
+                        </div>
+                        <span class="coupon-arrow">➔</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        
+        <!-- TAB CONTENT: JADWAL -->
+        <div id="main-tab-jadwal" class="main-tab-content">
                 <div class="card">
                     <h2 class="card-title serif">📖 Jadwal Pelajaran Minggu Ini</h2>
                     
@@ -1871,6 +1908,10 @@
                 </div>
             </div>
             
+        </div>
+        
+        <!-- TAB CONTENT: GALLERY (ELEVATE STUDENTS, PENGURUS, ADMIN) -->
+        <div id="main-tab-gallery" class="main-tab-content">
             <!-- Tab: Gallery -->
             <div id="tab-gallery" class="tab-content">
                 <div class="card">
@@ -1909,6 +1950,10 @@
                 </div>
             </div>
             
+        </div>
+        
+        <!-- TAB CONTENT: PRESTASI (ELEVATE STUDENTS, PENGURUS, ADMIN) -->
+        <div id="main-tab-prestasi" class="main-tab-content">
             <!-- Tab: Achievement -->
             <div id="tab-achievement" class="tab-content">
                 <div class="card">
@@ -1948,6 +1993,10 @@
                 </div>
             </div>
             
+        </div>
+        
+        <!-- TAB CONTENT: INFO (Semua Role) -->
+        <div id="main-tab-info" class="main-tab-content">
             <!-- Tab: Info -->
             <div id="tab-info" class="tab-content">
                 <!-- Notice Board MBG -->
@@ -2070,6 +2119,51 @@
                 Mari kita terus naik bersama menuju kesuksesan! 🚀
             </p>
         </section>
+        </div>
+        
+        <!-- TAB CONTENT: EDIT KONTEN (PENGURUS, ADMIN) -->
+        <div id="main-tab-edit" class="main-tab-content">
+            <div class="card fade-in-up">
+                <h2 class="card-title serif">✏️ Edit Konten</h2>
+                <p style="margin-bottom: 1rem; font-size: 0.875rem; color: #666;">
+                    Fitur edit konten untuk pengurus dan admin. (Coming Soon)
+                </p>
+                <div style="text-align: center; padding: 3rem; background: var(--yellow-sticky); border: 2px dashed var(--ink-black);">
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">🚧</p>
+                    <p style="font-weight: 700;">Fitur ini sedang dalam pengembangan</p>
+                    <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">Edit jadwal, info, dan konten lainnya akan segera hadir!</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB CONTENT: MANAJEMEN USER (ADMIN) -->
+        <div id="main-tab-manage" class="main-tab-content">
+            <div class="card fade-in-up">
+                <h2 class="card-title serif">🔐 Manajemen User</h2>
+                <p style="margin-bottom: 1rem; font-size: 0.875rem; color: #666;">
+                    Kelola role pengguna di sini. Hanya admin yang dapat mengakses panel ini.
+                </p>
+                <div id="userList" class="user-list">
+                    <!-- User list will be populated here -->
+                    <p style="text-align: center; color: #888;">Memuat data pengguna...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB CONTENT: PENGATURAN (ADMIN) -->
+        <div id="main-tab-settings" class="main-tab-content">
+            <div class="card fade-in-up">
+                <h2 class="card-title serif">⚙️ Pengaturan</h2>
+                <p style="margin-bottom: 1rem; font-size: 0.875rem; color: #666;">
+                    Pengaturan sistem dan konfigurasi website. (Coming Soon)
+                </p>
+                <div style="text-align: center; padding: 3rem; background: var(--yellow-sticky); border: 2px dashed var(--ink-black);">
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">⚙️</p>
+                    <p style="font-weight: 700;">Fitur pengaturan sedang dalam pengembangan</p>
+                    <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">Konfigurasi website, tema, dan pengaturan lainnya akan segera hadir!</p>
+                </div>
+            </div>
+        </div>
         
         <!-- Footer -->
         <footer class="footer fade-in-up delay-5">
@@ -2241,6 +2335,44 @@
             }
         }
         
+        // Main Tab Switcher (Role-based tabs)
+        function switchMainTab(tabName) {
+            // Hide all main tab contents
+            const allMainTabs = document.querySelectorAll('.main-tab-content');
+            allMainTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all main nav tabs
+            const allMainNavTabs = document.querySelectorAll('.main-nav-tab');
+            allMainNavTabs.forEach(nav => nav.classList.remove('active'));
+            
+            // Show selected main tab
+            const selectedTab = document.getElementById('main-tab-' + tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // Add active class to clicked main nav tab
+            const clickedTab = document.querySelector(`.main-nav-tab[data-tab="${tabName}"]`);
+            if (clickedTab) {
+                clickedTab.classList.add('active');
+            }
+        }
+        
+        // Show/Hide tabs based on user role
+        function updateTabsBasedOnRole(userRole) {
+            const allTabs = document.querySelectorAll('.main-nav-tab[data-roles]');
+            
+            allTabs.forEach(tab => {
+                const allowedRoles = tab.getAttribute('data-roles');
+                
+                if (allowedRoles && allowedRoles.includes(userRole)) {
+                    tab.classList.remove('tab-hidden');
+                } else if (allowedRoles) {
+                    tab.classList.add('tab-hidden');
+                }
+            });
+        }
+        
         // Modal Functions
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
@@ -2400,18 +2532,22 @@
             document.getElementById('userSection').classList.remove('hidden');
             document.getElementById('userName').textContent = name;
             document.getElementById('userRole').textContent = role;
+            
+            // Update tabs based on role
+            updateTabsBasedOnRole(role);
         }
         
         function showAuthButtons() {
             document.getElementById('authButtons').classList.remove('hidden');
             document.getElementById('userSection').classList.add('hidden');
-            document.getElementById('adminPanel').classList.remove('active');
+            
+            // Reset to default tabs (guest view)
+            updateTabsBasedOnRole('NON ELEVATE');
         }
         
         // Load Admin Panel
         async function loadAdminPanel() {
-            document.getElementById('adminPanel').classList.add('active');
-            
+            // Admin panel now in "Manajemen User" tab
             try {
                 const usersSnapshot = await window.firebaseGetDocs(
                     window.firebaseCollection(window.firebaseDb, 'users')
@@ -2437,11 +2573,17 @@
                     `);
                 });
                 
-                document.getElementById('userList').innerHTML = userListHtml.join('');
+                const userListElement = document.getElementById('userList');
+                if (userListElement) {
+                    userListElement.innerHTML = userListHtml.join('');
+                }
                 
             } catch (error) {
                 console.error('Load admin panel error:', error);
-                document.getElementById('userList').innerHTML = '<p style="text-align: center; color: #c00;">Gagal memuat data pengguna.</p>';
+                const userListElement = document.getElementById('userList');
+                if (userListElement) {
+                    userListElement.innerHTML = '<p style="text-align: center; color: #c00;">Gagal memuat data pengguna.</p>';
+                }
             }
         }
         

@@ -1,48 +1,14 @@
-Tolong perbarui fitur Login dan Register pada project ini dengan menggunakan Firebase SDK v12 CDN dan ketentuan sebagai berikut:
+Tolong perbaiki tata letak UI (layout) pada index.html sesuai poin berikut:
 
-1. Form Register:
-   - Input yang diminta HANYA:
-     * Nama Lengkap
-     * Password
-     * Konfirmasi Password
-   - Validasi: Jika "Password" dan "Konfirmasi Password" tidak cocok, tampilkan pesan error dan batalkan proses register.
-   - Otomatis buat format email dummy di background dari Nama Lengkap, contoh: `nama_lengkap@elevate.local` (ubah ke huruf kecil dan ganti spasi dengan `_`).
-   - Simpan dokumen ke Firestore koleksi `users`:
-     {
-       uid: user.uid,
-       nama_lengkap: nama,
-       generated_email: emailDummy,
-       role: "NON ELEVATE", // Default akun baru
-       createdAt: serverTimestamp()
-     }
+1. Perbaiki Header & Profil Box (Pojok Kanan Atas):
+   - Perlebar area container header bagian atas agar memiliki ruang kosong yang lebih lapang.
+   - Pindahkan elemen Profil User (Nama, Badge Role, dan Tombol Logout) tepat ke pojok kanan atas (absolute/flex alignment).
+   - Pastikan Profil Box tidak menabrak atau menumpuk teks judul "THE ELEVATE GAZETTE" maupun garis pembatas header.
 
-2. Form Login:
-   - Input yang diminta HANYA: Nama Lengkap dan Password.
-   - Logika Login: Format Nama Lengkap inputan menjadi email dummy (`nama_lengkap@elevate.local`), lalu panggil `signInWithEmailAndPassword(auth, generated_email, password)`.
+2. Sistem Tab Menu (Memisah Panel/Slide):
+   - Jangan tampilkan semua panel (seperti Admin Panel, Stats, dll) secara bertumpuk dalam satu halaman utama.
+   - Buatlah sistem Tab Navigation horizontal di bawah header dengan pilihan tab (contoh: Main View, Admin Panel, Stats, dll).
+   - Gunakan logika JavaScript (show/hide class) agar hanya panel dari Tab yang aktif saja yang muncul, sedangkan panel lainnya tersembunyi.
+   - Tombol Tab "Admin Panel" hanya boleh terlihat/aktif jika user yang login memiliki role "ADMIN".
 
-3. Konfigurasi Firebase (CDN SDK v12):
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCdCrODbe_bPWR4gd3sGULWQ_7AqyjmhxU",
-    authDomain: "elevate-corner.firebaseapp.com",
-    projectId: "elevate-corner",
-    storageBucket: "elevate-corner.firebasestorage.app",
-    messagingSenderId: "885889040614",
-    appId: "1:885889040614:web:b3e67fb8e8416a509f7b27",
-    measurementId: "G-7GY5X22F8Z"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-</script>
-
-4. Desain UI & Role Management:
-   - Sesuaikan tampilan modal Auth dengan desain koran vintage (The Elevate Gazette).
-   - Tampilkan Badge Role dan Nama User di header setelah berhasil login.
-   - Sistem 4 Role: "NON ELEVATE" (default), "ELEVATE STUDENTS", "PENGURUS", dan "ADMIN".
-   - Sediakan Panel Manajemen Role khusus bagi pengguna berkategori ADMIN.
+3. Pertahankan gaya visual tema koran vintage (The Elevate Gazette) yang sudah ada.
