@@ -1,95 +1,48 @@
-Tolong ubah dan perbarui file index.html di project ini agar memiliki bagian Jadwal Pelajaran untuk kelas X-11 dengan tampilan Tab Menu Interaktif per Hari (Senin, Selasa, Rabu, Kamis, Jumat).
+Tolong perbarui fitur Login dan Register pada project ini dengan menggunakan Firebase SDK v12 CDN dan ketentuan sebagai berikut:
 
-Buatkan tampilan yang bersih, modern, dan responsive (enak dilihat di HP maupun Laptop) menggunakan HTML, CSS, dan JavaScript bawaan (vanilla).
+1. Form Register:
+   - Input yang diminta HANYA:
+     * Nama Lengkap
+     * Password
+     * Konfirmasi Password
+   - Validasi: Jika "Password" dan "Konfirmasi Password" tidak cocok, tampilkan pesan error dan batalkan proses register.
+   - Otomatis buat format email dummy di background dari Nama Lengkap, contoh: `nama_lengkap@elevate.local` (ubah ke huruf kecil dan ganti spasi dengan `_`).
+   - Simpan dokumen ke Firestore koleksi `users`:
+     {
+       uid: user.uid,
+       nama_lengkap: nama,
+       generated_email: emailDummy,
+       role: "NON ELEVATE", // Default akun baru
+       createdAt: serverTimestamp()
+     }
 
-Gunakan data jadwal pelajaran berikut:
+2. Form Login:
+   - Input yang diminta HANYA: Nama Lengkap dan Password.
+   - Logika Login: Format Nama Lengkap inputan menjadi email dummy (`nama_lengkap@elevate.local`), lalu panggil `signInWithEmailAndPassword(auth, generated_email, password)`.
 
-1. Senin:
+3. Konfigurasi Firebase (CDN SDK v12):
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-07:40 - 09:00 : SJR / Dina
+  const firebaseConfig = {
+    apiKey: "AIzaSyCdCrODbe_bPWR4gd3sGULWQ_7AqyjmhxU",
+    authDomain: "elevate-corner.firebaseapp.com",
+    projectId: "elevate-corner",
+    storageBucket: "elevate-corner.firebasestorage.app",
+    messagingSenderId: "885889040614",
+    appId: "1:885889040614:web:b3e67fb8e8416a509f7b27",
+    measurementId: "G-7GY5X22F8Z"
+  };
 
-09:00 - 09:40 : PABP / Bariyah
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+</script>
 
-09:40 - 09:55 : Istirahat 1
-
-09:55 - 10:35 : FIS / Fauzi
-
-10:35 - 11:55 : BIN / Dhofir
-
-11:55 - 12:40 : Istirahat 2
-
-12:40 - 14:00 : BIO / LilikBio
-
-14:00 - 14:40 : BK / Khabibatul
-
-14:40 - 16:00 : PP / Asti
-
-2. Selasa:
-
-07:00 - 08:20 : PKWU / Anita
-
-08:20 - 09:40 : SOS / Putri
-
-09:40 - 09:55 : Istirahat 1
-
-09:55 - 11:15 : EKO / Ervina
-
-11:15 - 11:55 : GEO / Cholila
-
-11:55 - 12:40 : Istirahat 2
-
-12:40 - 14:00 : BIG / Nisa
-
-14:00 - 14:40 : PJOK / Fazar
-
-14:40 - 16:00 : KIM / Novvy
-
-3. Rabu:
-
-07:00 - 08:20 : PJOK / Fazar
-
-08:20 - 09:40 : BIN / Dhofir
-
-09:40 - 09:55 : Istirahat 1
-
-09:55 - 11:15 : FIS / Fauzi
-
-11:15 - 11:55 : BIO / LilikBio
-
-11:55 - 12:40 : Istirahat 2
-
-12:40 - 14:00 : KIM / Novvy
-
-14:00 - 16:00 : MATU / Rachma
-
-4. Kamis:
-
-07:00 - 07:40 : EKO / Ervina
-
-07:40 - 08:20 : PABP / Bariyah
-
-08:20 - 09:40 : KKA / Endang
-
-09:40 - 09:55 : Istirahat 1
-
-09:55 - 11:15 : INFOR / Endang
-
-11:15 - 11:55 : BIG / Nisa
-
-11:55 - 12:40 : Istirahat 2
-
-12:40 - 14:00 : BJW / Nafi'
-
-14:00 - 15:20 : SOS / Putri
-
-5. Jumat:
-
-07:00 - 08:20 : SJR / Dina
-
-08:20 - 09:40 : GEO / Cholila
-
-09:40 - 09:55 : Istirahat 1
-
-09:55 - 11:55 : MATU / Rachma
-
-Buatkan tombol tab untuk tiap hari di mana saat tombol hari diklik, hanya jadwal hari tersebut yang tampil. Berikan juga warna pembeda khusus untuk jam Istirahat.
+4. Desain UI & Role Management:
+   - Sesuaikan tampilan modal Auth dengan desain koran vintage (The Elevate Gazette).
+   - Tampilkan Badge Role dan Nama User di header setelah berhasil login.
+   - Sistem 4 Role: "NON ELEVATE" (default), "ELEVATE STUDENTS", "PENGURUS", dan "ADMIN".
+   - Sediakan Panel Manajemen Role khusus bagi pengguna berkategori ADMIN.
